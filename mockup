@@ -1,0 +1,31 @@
+import socket
+from struct import *
+from random import *
+
+#n = int(input("Give the number: "))
+c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#r = pack('>i ', n)
+c.connect(('172.30.118.255', 9999))
+#c.connect(('172.30.116.87', 9999))
+#c.send(r)
+chunk = c.recv(33)
+print(chunk)
+#for i in range(len(chunk)):
+#    bla = unpack('p', chunk[i])
+#    s += bla[0]
+s = ""
+r = pack('>I',6)
+c.send(r)
+chunk = c.recv(1000)
+print(chunk)
+#for i in range(len(chunk)):
+bla = unpack('865s', chunk)
+
+# chunk = c.recvfrom(4)[0]
+# chunk = unpack('<i', chunk)
+# n = chunk[0]
+# for i in range(n):
+#     chunk = c.recvfrom(4)[0]
+#     chunk = unpack('<i', chunk)
+#     print(chunk[0])
+c.close()
